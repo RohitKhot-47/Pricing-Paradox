@@ -11,7 +11,7 @@ If PROJ01 was my introduction to consulting-grade analytics, PROJ02 is where thi
 
 I started with a question — why does a Hermès bag cost $38,000 when the leather costs $200? The obvious answer is "brand." But that's a label, not an answer.
 
-I wanted to measure it. So I built a dataset from scratch with AI assistance, structured it around a BCG framework, and let the data tell me what actually drives luxury pricing power.
+I wanted to measure it. So I built a dataset with AI assistance from publicly available data, structured it around a BCG framework, and let the data tell me what actually drives luxury pricing power.
 
 What I found surprised me.
 
@@ -48,6 +48,25 @@ What I found surprised me.
 Tier 2 (accessible luxury) has **47% more stores** than Tier 1 but generates **less revenue**.
 24 of those stores are outlets — discounting their way out of relevance.
 Volume without pricing power is just noise.
+
+---
+
+## 🔍 What I Did Technically
+
+**Data Cleaning — MySQL**
+- Created a working dataset from raw using `CREATE TABLE LIKE` + `INSERT`
+- Dropped irrelevant columns with `ALTER TABLE`
+
+**Exploratory Data Analysis — MySQL**
+- Used `CASE WHEN` to engineer a new `heritage` column from `brand_founded_year` — bucketed into Legacy 100+, True Heritage 50+, and Upcoming
+- Used `ALTER TABLE` + `UPDATE` to permanently add derived columns to the dataset
+- Used `AVG` + `GROUP BY` to analyse price and revenue across tiers, distribution channels and heritage buckets
+- Used `COUNT DISTINCT` for brand-level distribution and marketing analysis
+- Used `WHERE` + filters for pillar-specific deep dives across all 4 MECE pillars
+
+**Visualisation — Power BI**
+- Built a 3-page dashboard: Overview · Exclusivity · Heritage
+- Used bar charts, treemaps, and KPI cards to surface the 82x and 17x findings
 
 ---
 
